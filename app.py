@@ -1,55 +1,27 @@
-from flask import Flask, render_template, request, redirect, url_for, session
-import os
-
-app = Flask(__name__)
-app.secret_key = "your_secret_key"
-
-UPLOAD_FOLDER = 'uploads'
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-
-ADMIN_ID = "admin"
-ADMIN_PW = "password"
-
-@app.route('/')
-def index():
-    return redirect(url_for('login'))
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        userid = request.form['userid']
-        password = request.form['password']
-        if userid == ADMIN_ID and password == ADMIN_PW:
-            session['userid'] = userid
-            return redirect(url_for('dashboard'))
-        else:
-            return render_template('login.html', error="Invalid credentials.")
-    return render_template('login.html')
-
-@app.route('/dashboard')
-def dashboard():
-    if 'userid' not in session:
-        return redirect(url_for('login'))
-
-    files = os.listdir(UPLOAD_FOLDER)
-    return render_template('dashboard.html', files=files)
-
-@app.route('/logout')
-def logout():
-    session.pop('userid', None)
-    return redirect(url_for('login'))
-
-if __name__ == '__main__':
-    app.run(debug=True)
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
+# 관리자 홈 → 대시보드
 @app.route("/")
-def home():
+def dashboard():
     return render_template("dashboard.html")
 
-if __name__ == "__main__":
-    app.run()
+# 로그인 페이지
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
 
+        # 여기서는 예시로 간단히 처리 (실제 사용시 보안 추가 필요)
+        if username == "admin" and password == "password":
+            return redirect(url_for("dashboard"))
+        else:
+            return "Login Failed", 401
+
+    return render_template("login.html")
+
+# 앱 실행
+if __name__ == "__main__":
+    app.run(debug=True)
