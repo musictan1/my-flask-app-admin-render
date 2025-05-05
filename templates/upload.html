@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ category }} 업로드</title>
+</head>
+<body>
+    <h1>{{ category|capitalize }} 업로드</h1>
+    <form method="POST" enctype="multipart/form-data">
+        파일 선택: <input type="file" name="file"><br>
+        <input type="submit" value="업로드">
+    </form>
+    <a href="/">대시보드로 돌아가기</a>
+</body>
+</html>

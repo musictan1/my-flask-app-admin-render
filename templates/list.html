@@ -1,8 +1,15 @@
-<h2>{{ category }} 리스트</h2>
-<ul>
-{% for file in files %}
-    <li>{{ file.name }} (업로드 시간: {{ file.time }})</li>
-{% endfor %}
-</ul>
-<a href="/upload/{{ category }}">업로드하기</a>
-<a href="/">뒤로가기</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ category }} 목록</title>
+</head>
+<body>
+    <h1>{{ category|capitalize }} 목록</h1>
+    <ul>
+        {% for file in files %}
+        <li>{{ file.name }} (업로드 시간: {{ file.time }})</li>
+        {% endfor %}
+    </ul>
+    <a href="/">대시보드로 돌아가기</a>
+</body>
+</html>
