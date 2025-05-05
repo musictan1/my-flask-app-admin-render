@@ -1,18 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <title>음악 콘텐츠 관리자 페이지</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f8f8f8; margin: 0; padding: 0; }
+        header { background-color: #333; color: white; padding: 20px; text-align: center; }
+        nav { background-color: #555; color: white; padding: 10px; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; }
+        .container { padding: 20px; }
+        .card { background-color: white; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    </style>
 </head>
 <body>
-    <h2>관리자 페이지</h2>
-    <p><a href="{{ url_for('logout') }}">Logout</a></p>
-    <h3>업로드된 파일 목록</h3>
-    <ul>
-    {% for file in files %}
-        <li>{{ file }}</li>
-    {% else %}
-        <li>업로드된 파일이 없습니다.</li>
-    {% endfor %}
-    </ul>
+
+<header>
+    <h1>🎵 음악 콘텐츠 관리자</h1>
+</header>
+
+<nav>
+    <a href="#">음악 파일 관리</a>
+    <a href="#">영상 관리</a>
+    <a href="#">악보 관리</a>
+    <a href="#">게시판 관리</a>
+    <a href="#">회원 관리</a>
+</nav>
+
+<div class="container">
+
+    <div class="card">
+        <h2>음악 파일 관리</h2>
+        <p>MP3, WAV 등 음악 파일을 업로드하고, 목록을 관리합니다.</p>
+    </div>
+
+    <div class="card">
+        <h2>영상 관리</h2>
+        <p>영상 콘텐츠를 업로드하고, 목록을 관리합니다.</p>
+    </div>
+
+    <div class="card">
+        <h2>악보 관리</h2>
+        <p>PDF 또는 이미지로 된 악보를 업로드하고, 목록을 관리합니다.</p>
+    </div>
+
+    <div class="card">
+        <h2>게시판 관리</h2>
+        <p>게시판 글을 확인하고, 삭제 또는 공지사항으로 설정합니다.</p>
+    </div>
+
+    <div class="card">
+        <h2>회원 관리</h2>
+        <p>회원 목록과 가입 정보를 관리합니다.</p>
+    </div>
+
+</div>
+
 </body>
 </html>
